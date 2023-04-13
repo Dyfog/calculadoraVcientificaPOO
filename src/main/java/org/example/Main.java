@@ -165,9 +165,25 @@ public class Main {
         int eleccion=ingresarSoloNumeroInt();
         switch (eleccion){
             case 1:
-                double primerValor=ingresarSoloNumeroDouble();
-                double segundoValor=ingresarSoloNumeroDouble();
-                sumar(primerValor,segundoValor);
+                System.out.println("ingrese su primer valor");
+                double primerValorSuma=ingresarSoloNumeroDouble();
+                System.out.println("ingrese el 2do valor");
+                double segundoValorSuma=ingresarSoloNumeroDouble();
+                System.out.println("la suma de de sus numeros es: " + sumar(primerValorSuma,segundoValorSuma));
+                break;
+            case 2:
+                System.out.println("ingrese su numero base");
+                double primerValorResta=ingresarSoloNumeroDouble();
+                System.out.println("ingrese el valor que restará al primero");
+                double segundoValorResta=ingresarSoloNumeroDouble();
+                System.out.println("la resta de sus numeros es: "+restar(primerValorResta,segundoValorResta));
+                break;
+            case 3:
+                System.out.println("ingrese el primer factor");
+                double primerValorMultiplicacion = ingresarSoloNumeroDouble();
+                System.out.println("ingrese el segundo factor");
+                double segundoValorMultiplicacion = ingresarSoloNumeroDouble();
+                System.out.println("la multiplicacion de ambos números es: ");
         }
     }
 }
