@@ -152,7 +152,7 @@ public class Main {
         System.out.println("1.-Sumar");
         System.out.println("2.-Restar");
         System.out.println("3.-Multiplicar");
-        System.out.println("4.-Dividir (ingrese un dividendo distinto de 0)");
+        System.out.println("4.-Dividir (ingrese un divisor distinto de 0)");
         System.out.println("5.-Determinar mayor entre 2 numeros");
         System.out.println("6.-Determinar menor entre 2 numeros");
         System.out.println("7.-Potencia de un numero (ambos números deben ser distintos de 0)");
@@ -183,7 +183,22 @@ public class Main {
                 double primerValorMultiplicacion = ingresarSoloNumeroDouble();
                 System.out.println("ingrese el segundo factor");
                 double segundoValorMultiplicacion = ingresarSoloNumeroDouble();
-                System.out.println("la multiplicacion de ambos números es: ");
+                System.out.println("la multiplicacion de ambos números es: " + multiplicar(primerValorMultiplicacion,segundoValorMultiplicacion));
+                break;
+            case 4:
+                System.out.println("ingrese el dividendo");
+                double primerValorDivision = ingresarSoloNumeroDouble();
+                System.out.println("ingrese el divisor");
+                double segundoValorDivision = ingresarSoloNumeroDouble();
+                while (!validarDistinto0(segundoValorDivision)){
+                    System.out.println("El divisor debe ser distinto de 0, ingréselo nuevamente");
+                    segundoValorDivision = ingresarSoloNumeroDouble();
+                }
+                System.out.println("La división de los números es: " + dividir(primerValorDivision,segundoValorDivision));
+                break;
+            case 5:
+                System.out.println("");
+
         }
     }
 }
