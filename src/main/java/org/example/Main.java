@@ -1,5 +1,6 @@
 package org.example;
 
+import javax.management.StringValueExp;
 import java.util.Scanner;
 
 public class Main {
@@ -87,6 +88,12 @@ public class Main {
         }
         return true;
     }
+    public static boolean validarRangoNumero(int numero, int min, int max) {
+        if (numero < min || numero > max) {
+            return false;
+        }
+        return true;
+    }
     //a*e!=b*d
     public static double[] sistDosxDos(double[] listaCoeficientes){
         double[] listaSoluciones=new double[2];
@@ -108,15 +115,19 @@ public class Main {
         System.out.println("x = " + x);
         System.out.println("y = " + y);*/
     }
-    public static String ecuaRecta(double[] listaCoeficientes){
-        double X=listaCoeficientes[0];
-        double Y=listaCoeficientes[1];
-        double x=listaCoeficientes[2];
-        double y=listaCoeficientes[3];
+    public static String ecuacionRecta(double[] listaCoordenadas){
+        String ecuacion = "";
+        double X=listaCoordenadas[0];
+        double Y=listaCoordenadas[1];
+        double x=listaCoordenadas[2];
+        double y=listaCoordenadas[3];
         double m = (y - Y) / (x - X);
         double b = Y - m * X;
-        String ecuacion= String.valueOf("Y = " + m + "X + " + b);
-        //System.out.println("La ecuación de la recta es: Y = " + m + "X + " + b);
+        if (!validarDistinto0(m)){
+            ecuacion = String.valueOf("Y = " + b);
+        }else {
+            ecuacion = String.valueOf("Y = " + m + "X + " + b);
+        }
         return ecuacion;
     }
 
@@ -140,12 +151,28 @@ public class Main {
         switch (eleccion){
             case 1:
                 menuAritmeticas();
-
+                break;
+            case 5:
+                ejecucuionEcuacionDeLaRecta();
+                break;
         }
-
     }
 
-    public static void opcionesMenuAritmeticas(){
+    public static void ejecucuionEcuacionDeLaRecta(){
+        double[] arregloCoordenadas = new double [4];
+        System.out.println("El orden de ingrese de las coordenadas es: 1era X, 1era Y, 2da X, 2da Y");
+        for (int i = 0 ; i < arregloCoordenadas.length ; i++){
+            System.out.println("Ingrese un valor para la coordenada " + (i+1));
+            arregloCoordenadas[i]=ingresarSoloNumeroDouble();
+        }
+        while (restar(arregloCoordenadas[0],arregloCoordenadas[2])==0){
+            System.out.println("La resta entre las X no puede ser 0, ingrese nuevamente una segunda X con la que no ocurra esto:");
+            arregloCoordenadas[2]=ingresarSoloNumeroDouble();
+        }
+        System.out.println("La ecuacion de la recta es: " + ecuacionRecta(arregloCoordenadas));
+    }
+
+    public static int opcionesMenuAritmeticas(){
         System.out.println("Dentro de estas operaciones aritmeticas, que desea hacer?");
         System.out.println("1.-Sumar");
         System.out.println("2.-Restar");
@@ -156,11 +183,16 @@ public class Main {
         System.out.println("7.-Potencia de un numero (ambos números deben ser distintos de 0)");
         System.out.println("8.-Calcular porcentaje de un numero (el porcentaje debe ser un número positivo)");
         System.out.println("9.-Salir");
+        int eleccion = ingresarSoloNumeroInt();
+        while (!validarRangoNumero(eleccion,1,9)){
+            System.out.println("Ingrese un valor dentro de las opciones: ");
+            eleccion = ingresarSoloNumeroInt();
+        }
+        return eleccion;
     }
 
     public static void menuAritmeticas(){
-        opcionesMenuAritmeticas();
-        int eleccion=ingresarSoloNumeroInt();
+        int eleccion = opcionesMenuAritmeticas();
         switch (eleccion){
             case 1:
                 System.out.println("ingrese su primer valor");
@@ -233,6 +265,10 @@ public class Main {
                     porcentaje = ingresarSoloNumeroDouble();
                 }
                 System.out.println("El porcentaje obtenido es: " + porcentaje(numeroPorcentaje,porcentaje));
+                break;
+            case 9:
+                System.out.println("Saliendo...");
+                break;
         }
     }
 }
