@@ -1,16 +1,17 @@
 package org.example;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        menuPrincipal();
     }
-<<<<<<< Updated upstream
-}
-=======
+
     //revisar que b sea mayor o igual a 0
     public static double porcentaje(double a, double b){
         return a*b/100;
     }
+
     //revisar que a!=0 && b !=0 en simultaneo
     public static double potencia(double a, double b){
         return Math.pow(a,b);
@@ -24,9 +25,9 @@ public class Main {
     }
     public static double numMenor(double a, double b){
         if (a<b){
-            return 1;
+            return a;
         } else {
-            return 2;
+            return b;
         }
     }
     public static double sumar(double a, double b){
@@ -35,6 +36,7 @@ public class Main {
     public static double restar(double numeroBase, double valorResta) {
         return numeroBase-valorResta;
     }
+
     //revisar que divisor =!0
     public static double dividir(double dividendo, double divisor) {
         return dividendo / divisor;
@@ -42,8 +44,9 @@ public class Main {
     public static double multiplicar(double a, double b) {
         return a * b;
     }
+
     //verificar a=!0
-    public static double[] ecuacion2Grado(int a, int b, int c) {
+    public static double[] solEcuacion2Grado(double a, double b, double c) {
         double discriminante = calcDiscriminante(a,b,c);
         double[] soluciones = new double[0];
         if (discriminante >= 0) {
@@ -52,8 +55,8 @@ public class Main {
                 soluciones[0] = (-b)/(2 * a);
             }else{
                 soluciones = new double[2];
-                soluciones[0] = ((-b) + Math.sqrt(calcDiscriminante(a,b,c))) / (2 * a);
-                soluciones[1] = ((-b) - Math.sqrt(calcDiscriminante(a,b,c)) / (2 * a));
+                soluciones[0] = (((-b) + Math.sqrt(calcDiscriminante(a,b,c)))) / (2 * a);
+                soluciones[1] = (((-b) - Math.sqrt(calcDiscriminante(a,b,c))) / (2 * a));
             }
         }
         return soluciones;
@@ -67,7 +70,6 @@ public class Main {
         double numero = in.nextDouble();
         return numero;
     }
-
     public static int ingresarSoloNumeroInt() {
         Scanner in = new Scanner(System.in);
         while (!in.hasNextInt()) {
@@ -90,6 +92,7 @@ public class Main {
         }
         return true;
     }
+
     //a*e!=b*d
     public static double[] sistDosxDos(double[] listaCoeficientes){
         double[] listaSoluciones=new double[2];
@@ -122,11 +125,9 @@ public class Main {
         //System.out.println("La ecuación de la recta es: Y = " + m + "X + " + b);
         return ecuacion;
     }
-
     public static double calcDiscriminante(double a, double b, double c){
         return (Math.pow(b,2)-4*a*c);
     }
-
     public static void opcionesMenuPrincipal(){
         System.out.println("¿Que desea hacer?");
         System.out.println("1.-Operaciones aritmeticas");
@@ -143,6 +144,11 @@ public class Main {
         switch (eleccion){
             case 1:
                 menuAritmeticas();
+                break;
+            case 2:
+                menuEcuacionCuadratica();
+                break;
+            case 3:
 
         }
 
@@ -199,9 +205,41 @@ public class Main {
                 break;
             case 5:
                 System.out.println("");
-                //mario
 
         }
     }
+    public static void menuEcuacionCuadratica(){
+        System.out.println("Dado el siguente esquema de escritura de la ecuación cuadratica, a(x^2)+b(x)+c=0");
+
+        System.out.println("Ingrese el valor de a");
+        double a = ingresarSoloNumeroDouble();
+        while (!validarDistinto0(a)){
+            System.out.println("El valor de a debe ser distinto de 0, ingréselo nuevamente");
+            a = ingresarSoloNumeroDouble();
+        }
+
+        System.out.println("Ahora ingrese el valor de b");
+        double b = ingresarSoloNumeroDouble();
+
+        System.out.println("Finalmente ingrese el valor de c");
+        double c = ingresarSoloNumeroDouble();
+
+        if (calcDiscriminante(a,b,c) < 0){
+            System.out.println("la ecuacion descrita tiene al menos una solucion imaginaria, por lo que se volvera al menu principal");
+        }
+
+        double[] soluciones = solEcuacion2Grado(a,b,c);
+        mostrarSolucionesCuadratica(soluciones);
+        menuPrincipal();
+    }
+    public static void mostrarSolucionesCuadratica(double[] soluciones){
+        int cantSoluciones = soluciones.length;
+
+        if (cantSoluciones == 1){
+            System.out.println("La ecuación cuadratica tiene una unica solucion y es: " + soluciones[0]);
+        }else{
+            System.out.println("La solucion x1 de la ecuacion es: " + soluciones[0]);
+            System.out.println("La solucion x2 de la ecuacion es: " + soluciones[1]+"\n");
+        }
+    }
 }
->>>>>>> Stashed changes
