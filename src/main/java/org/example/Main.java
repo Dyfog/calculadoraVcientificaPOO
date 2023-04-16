@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
+        menuPrincipal();
     }
     //revisar que b sea mayor o igual a 0
     public static double porcentaje(double a, double b){
@@ -197,8 +197,40 @@ public class Main {
                 System.out.println("La división de los números es: " + dividir(primerValorDivision,segundoValorDivision));
                 break;
             case 5:
-                System.out.println("");
-
+                System.out.println("ingrese el primer número: ");
+                double primerValorMayor = ingresarSoloNumeroDouble();
+                System.out.println("ingrese el segundo número a comparar: ");
+                double segundoValorMayor = ingresarSoloNumeroDouble();
+                System.out.println("El número mayor de entre los dos ingresados es: " + numMayor(primerValorMayor,segundoValorMayor));
+                break;
+            case 6:
+                System.out.println("ingrese el primer número: ");
+                double primerValorMenor = ingresarSoloNumeroDouble();
+                System.out.println("ingrese el segundo número a comparar: ");
+                double segundoValorMenor = ingresarSoloNumeroDouble();
+                System.out.println("El número menor de entre los dos ingresados es: " + numMenor(primerValorMenor,segundoValorMenor));
+                break;
+            case 7:
+                System.out.println("ingrese el número base: ");
+                double base = ingresarSoloNumeroDouble();
+                System.out.println("ingrese el exponente: ");
+                double exponente = ingresarSoloNumeroDouble();
+                while (!validarDistinto0(exponente)){
+                    System.out.println("El exponente debe ser distinto de cero, ingréselo nuevamente: ");
+                    exponente = ingresarSoloNumeroDouble();
+                }
+                System.out.println("La potencia da como resultado: " + potencia(base,exponente));
+                break;
+            case 8:
+                System.out.println("Ingrese el número del que se obtendrá el porcentaje: ");
+                double numeroPorcentaje = ingresarSoloNumeroDouble();
+                System.out.println("Ingrese el porcentaje: ");
+                double porcentaje = ingresarSoloNumeroDouble();
+                while (!validarMayorA0(porcentaje)){
+                    System.out.println("El porcentaje debe ser mayor a 0: ");
+                    porcentaje = ingresarSoloNumeroDouble();
+                }
+                System.out.println("El porcentaje obtenido es: " + porcentaje(numeroPorcentaje,porcentaje));
         }
     }
 }
