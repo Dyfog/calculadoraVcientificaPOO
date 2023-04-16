@@ -34,14 +34,12 @@ public class Main {
     public static double restar(double numeroBase, double valorResta) {
         return numeroBase-valorResta;
     }
-    //revisar que divisor =!0
     public static double dividir(double dividendo, double divisor) {
         return dividendo / divisor;
     }
     public static double multiplicar(double a, double b) {
         return a * b;
     }
-    //verificar a=!0
     public static double[] ecuacion2Grado(int a, int b, int c) {
         double discriminante = calcDiscriminante(a,b,c);
         double[] soluciones = new double[0];
@@ -215,8 +213,8 @@ public class Main {
                 double base = ingresarSoloNumeroDouble();
                 System.out.println("ingrese el exponente: ");
                 double exponente = ingresarSoloNumeroDouble();
-                while (!validarDistinto0(exponente)){
-                    System.out.println("El exponente debe ser distinto de cero, ingréselo nuevamente: ");
+                while (!validarDistinto0(exponente) && (!validarDistinto0(base))){
+                    System.out.println("La base y el exponente no pueden ser 0 al mismo tiempo, ingrese otro exponente: ");
                     exponente = ingresarSoloNumeroDouble();
                 }
                 System.out.println("La potencia da como resultado: " + potencia(base,exponente));
@@ -224,10 +222,14 @@ public class Main {
             case 8:
                 System.out.println("Ingrese el número del que se obtendrá el porcentaje: ");
                 double numeroPorcentaje = ingresarSoloNumeroDouble();
+                while (!validarDistinto0(numeroPorcentaje)){
+                    System.out.println("El número ingresado debe ser distinto de cero, ingreselo nuevamente: ");
+                    numeroPorcentaje = ingresarSoloNumeroDouble();
+                }
                 System.out.println("Ingrese el porcentaje: ");
                 double porcentaje = ingresarSoloNumeroDouble();
                 while (!validarMayorA0(porcentaje)){
-                    System.out.println("El porcentaje debe ser mayor a 0: ");
+                    System.out.println("El porcentaje debe ser mayor a 0, ingreselo nuevamente: ");
                     porcentaje = ingresarSoloNumeroDouble();
                 }
                 System.out.println("El porcentaje obtenido es: " + porcentaje(numeroPorcentaje,porcentaje));
