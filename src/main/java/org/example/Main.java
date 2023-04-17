@@ -94,14 +94,15 @@ public class Main {
     }
 
     //a*e!=b*d
-    public static double[] sistDosxDos(double[] listaCoeficientes){
+    public static double[] solSist2x2(double[] ecuacion1, double[] ecuacion2){
         double[] listaSoluciones=new double[2];
-        double A=listaCoeficientes[0];
-        double B=listaCoeficientes[1];
-        double C=listaCoeficientes[2];
-        double D=listaCoeficientes[3];
-        double E=listaCoeficientes[4];
-        double F=listaCoeficientes[5];
+        double A = ecuacion1[0];
+        double B = ecuacion1[1];
+        double C = ecuacion1[2];
+
+        double D = ecuacion2[0];
+        double E = ecuacion2[1];
+        double F = ecuacion2[2];
 
         double determinanteSistema = A * E - B * D;
         double determinanteX = C * E - B * F;
@@ -110,9 +111,6 @@ public class Main {
         listaSoluciones[0] = determinanteX / determinanteSistema;
         listaSoluciones[1] = determinanteY / determinanteSistema;
         return listaSoluciones;
-        /*System.out.println("La solución del sistema es:");
-        System.out.println("x = " + x);
-        System.out.println("y = " + y);*/
     }
     public static String ecuaRecta(double[] listaCoeficientes){
         double X=listaCoeficientes[0];
@@ -147,9 +145,10 @@ public class Main {
                 break;
             case 2:
                 menuEcuacionCuadratica();
-                break;
-            case 3:
-
+                menuPrincipal();
+            case 4:
+                menuSistEcuacionesLineales();
+                menuPrincipal();
         }
 
     }
@@ -230,7 +229,6 @@ public class Main {
 
         double[] soluciones = solEcuacion2Grado(a,b,c);
         mostrarSolucionesCuadratica(soluciones);
-        menuPrincipal();
     }
     public static void mostrarSolucionesCuadratica(double[] soluciones){
         int cantSoluciones = soluciones.length;
@@ -241,5 +239,64 @@ public class Main {
             System.out.println("La solucion x1 de la ecuacion es: " + soluciones[0]);
             System.out.println("La solucion x2 de la ecuacion es: " + soluciones[1]+"\n");
         }
+    }
+
+    public static void mostrarSolucionesLineales(double[] soluciones){
+        System.out.println("El valor de x para el sistema es: "+soluciones[0]);
+        System.out.println("El valor de y para el sistema es: "+soluciones[1]+"\n");
+    }
+
+    public static boolean validarLinealesDistintas(double[] ecuacion1, double[] ecuacion2){
+        double coeficiente1 = ecuacion1[0]/ecuacion2[0];
+        double coeficiente2 = ecuacion1[1]/ecuacion2[1];
+        double coeficiente3 = ecuacion1[2]/ecuacion2[2];
+        if (coeficiente1==coeficiente2 && coeficiente2==coeficiente3){
+            return false;
+        }
+        return true;
+    }
+
+    public static void menuSistEcuacionesLineales(){
+
+        double[][] ecuaciones = ingresarEcuacionesLineales();
+        double[] ecuacion1 = ecuaciones[0];
+        double[] ecuacion2 = ecuaciones[1];
+
+        if (!validarLinealesDistintas(ecuacion1,ecuacion2)){
+            System.out.println("Las ecuaciones descritas son igules, por lo que se volvera al menu principal");
+            menuPrincipal();
+        }
+
+        double[] soluciones = solSist2x2(ecuacion1,ecuacion2);
+        mostrarSolucionesLineales(soluciones);
+    }
+    public static double[][] ingresarEcuacionesLineales(){
+        System.out.println("Dado el siguiente esquema de sistemas de ecuaciones lineales, ax + by = c");
+
+        System.out.println("Ingrese el valor de a para la primera ecuación");
+        double a1 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de b para la primera ecuación");
+        double b1 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de c para la primera ecuación");
+        double c1 = ingresarSoloNumeroDouble();
+
+        double[] ecuacion1 = {a1,b1,c1};
+
+        System.out.println("Ingrese el valor de a para la segunda ecuación");
+        double a2 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de b para la segunda ecuación");
+        double b2 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de c para la segunda ecuación");
+        double c2 = ingresarSoloNumeroDouble();
+
+        double[] ecuacion2 = {a2,b2,c2};
+
+        double[][] ecuaciones = {ecuacion1,ecuacion2};
+
+        return ecuaciones;
     }
 }
