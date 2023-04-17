@@ -13,6 +13,11 @@ public class Main {
         arr2D[1] = ingresarSoloNumero();
         return arr2D;
     }
+    public static double[] capturaDato() {
+        double[] arr = new double[1];
+        arr[0] = ingresarSoloNumero();
+        return arr;
+    }
     public static double perimetroCuadrado(double[] lados) {
         return lados[0] * 4;
     }
@@ -140,7 +145,7 @@ public class Main {
         return eleccion;
     }
     public static int opcionesMenuOperacion() {
-        System.out.println("Qué figura desea calcular?");
+        System.out.println("Qué operación desea realizar?");
         System.out.println("1.-Perímetro");
         System.out.println("2.-Área");
         System.out.println("3.-Volumen");
@@ -154,49 +159,55 @@ public class Main {
     }
     public static void menuFiguras() {
         boolean mantenerProgramaActivo = true;
-        int eleccion2 = opcionesMenuOperacion();
         while (mantenerProgramaActivo) {
+        int eleccion2 = opcionesMenuOperacion();
             switch (eleccion2) {
                 case 1:
                     int eleccion = opcionesMenuFiguras();
                     switch (eleccion) {
                         case 1:
-                            double[] lados = capturaDatos2D();
+                            System.out.println("Ingrese el largo del cuadrado: ");
+                            double[] lados = capturaDato();
                             if (comprobarCero(lados)) {
                                 System.out.println("El perimetro del cuadrado es: " + perimetroCuadrado(lados));
                             }
                             break;
                         case 2:
+                            System.out.println("Ingrese los lados del rectángulo: ");
                             double[] lados2 = capturaDatos2D();
                             if (comprobarCero(lados2)) {
                                 System.out.println("El perimetro del rectángulo es: " + perimetroRectangulo(lados2));
                             }
                             break;
                         case 3:
-                            double[] lados3 = capturaDatos2D();
+                            System.out.println("Ingrese el radio del circulo: ");
+                            double[] lados3 = capturaDato();
                             if (comprobarCero(lados3)) {
                                 System.out.println("El perimetro del circulo es: " + perimetroCirculo(lados3));
                             }
                             break;
                         case 4:
-                            double[] lados4 = capturaDatos2D();
+                            System.out.println("Ingrese el radio de la esfera: ");
+                            double[] lados4 = capturaDato();
                             if (comprobarCero(lados4)) {
-                                System.out.println("El perimetro del esfera es: " + perimetroEsfera(lados4));
+                                System.out.println("El perimetro de la esfera es: " + perimetroEsfera(lados4));
                             }
                             break;
                         case 5:
-                            double[] lados5 = capturaDatos2D();
+                            System.out.println("Ingrese el largo del cubo: ");
+                            double[] lados5 = capturaDato();
                             if (comprobarCero(lados5)) {
                                 System.out.println("El perimetro del cubo es: " + perimetroCubo(lados5));
                             }
                             break;
                         case 6:
+                            System.out.println("Ingrese la altura y el radio del cono: ");
                             double[] lados6 = capturaDatos2D();
                             if (comprobarCero(lados6)) {
                                 System.out.println("El perimetro del cono es: " + perimetroCono(lados6));
                             }
                             break;
-                        case 7:
+                        default:
                             System.out.println("Saliendo...");
                             break;
                     }
@@ -205,42 +216,48 @@ public class Main {
                     int eleccion3 = opcionesMenuFiguras();
                     switch (eleccion3) {
                         case 1:
-                            double[] lados = capturaDatos2D();
+                            System.out.println("Ingrese el largo del cuadrado: ");
+                            double[] lados = capturaDato();
                             if (comprobarCero(lados)) {
                                 System.out.println("El área del cuadrado es: " + areaCuadrado(lados));
                             }
                             break;
                         case 2:
+                            System.out.println("Ingrese los lados del rectángulo: ");
                             double[] lados2 = capturaDatos2D();
                             if (comprobarCero(lados2)) {
                                 System.out.println("El área del rectángulo es: " + areaRectangulo(lados2));
                             }
                             break;
                         case 3:
-                            double[] lados3 = capturaDatos2D();
+                            System.out.println("Ingrese el radio del circulo: ");
+                            double[] lados3 = capturaDato();
                             if (comprobarCero(lados3)) {
                                 System.out.println("El área del circulo es: " + areaCirculo(lados3));
                             }
                             break;
                         case 4:
-                            double[] lados4 = capturaDatos2D();
+                            System.out.println("Ingrese el radio de la esfera: ");
+                            double[] lados4 = capturaDato();
                             if (comprobarCero(lados4)) {
-                                System.out.println("El área del esfera es: " + areaEsfera(lados4));
+                                System.out.println("El área de la esfera es: " + areaEsfera(lados4));
                             }
                             break;
                         case 5:
-                            double[] lados5 = capturaDatos2D();
+                            System.out.println("Ingrese el largo del cubo: ");
+                            double[] lados5 = capturaDato();
                             if (comprobarCero(lados5)) {
                                 System.out.println("El área del cubo es: " + areaCubo(lados5));
                             }
                             break;
                         case 6:
+                            System.out.println("Ingrese la altura y el radio del cono: ");
                             double[] lados6 = capturaDatos2D();
                             if (comprobarCero(lados6) && comprobarTriangulo(lados6)) {
                                 System.out.println("El área del cono es: " + areaCono(lados6));
                             }
                             break;
-                        case 7:
+                        default:
                             System.out.println("Saliendo...");
                             break;
                     }
@@ -249,24 +266,27 @@ public class Main {
                     int eleccion4 = opcionesMenuVolumen();
                     switch (eleccion4) {
                         case 1:
-                            double[] lados = capturaDatos2D();
+                            System.out.println("Ingrese el radio de la esfera: ");
+                            double[] lados = capturaDato();
                             if (comprobarCero(lados)) {
                                 System.out.println("El volumen del esfera es: " + volumenEsfera(lados));
                             }
                             break;
                         case 2:
-                            double[] lados2 = capturaDatos2D();
+                            System.out.println("Ingrese el largo del cubo: ");
+                            double[] lados2 = capturaDato();
                             if (comprobarCero(lados2)) {
                                 System.out.println("El volumen del cubo es: " + volumenCubo(lados2));
                             }
                             break;
                         case 3:
+                            System.out.println("Ingrese la altura y el radio del cono: ");
                             double[] lados3 = capturaDatos2D();
                             if (comprobarCero(lados3) && comprobarTriangulo(lados3)) {
                                 System.out.println("El volumen del cono es: " + volumenCono(lados3));
                             }
                             break;
-                        case 4:
+                        default:
                             System.out.println("Saliendo...");
                             break;
                     }
@@ -276,7 +296,7 @@ public class Main {
                     mantenerProgramaActivo = false;
                     break;
                 default:
-                    System.out.println("Opcion no valida");
+                    System.out.println("Opción no valida");
                     menuPrincipal();
             }
         }
