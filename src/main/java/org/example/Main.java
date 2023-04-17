@@ -1,17 +1,14 @@
 package org.example;
 
-import javax.management.StringValueExp;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
         menuPrincipal();
     }
-    //revisar que b sea mayor o igual a 0
     public static double porcentaje(double a, double b){
         return a*b/100;
     }
-    //revisar que a!=0 && b !=0 en simultaneo
     public static double potencia(double a, double b){
         return Math.pow(a,b);
     }
@@ -35,17 +32,19 @@ public class Main {
     public static double restar(double numeroBase, double valorResta) {
         return numeroBase-valorResta;
     }
+
     public static double dividir(double dividendo, double divisor) {
         return dividendo / divisor;
     }
     public static double multiplicar(double a, double b) {
-        double producto = a*b;
-        if (a*b==-0){
+        double resultado = a * b;
+        if (resultado == -0) {
             return 0;
         }
-        return producto;
+        return resultado;
     }
-    /*public static double[] ecuacion2Grado(int a, int b, int c) {
+
+    public static double[] solEcuacion2Grado(double a, double b, double c) {
         double discriminante = calcDiscriminante(a,b,c);
         double[] soluciones = new double[0];
         if (discriminante >= 0) {
@@ -54,12 +53,12 @@ public class Main {
                 soluciones[0] = (-b)/(2 * a);
             }else{
                 soluciones = new double[2];
-                soluciones[0] = ((-b) + Math.sqrt(calcDiscriminante(a,b,c))) / (2 * a);
-                soluciones[1] = ((-b) - Math.sqrt(calcDiscriminante(a,b,c)) / (2 * a));
+                soluciones[0] = (((-b) + Math.sqrt(calcDiscriminante(a,b,c)))) / (2 * a);
+                soluciones[1] = (((-b) - Math.sqrt(calcDiscriminante(a,b,c))) / (2 * a));
             }
         }
         return soluciones;
-    } */
+    }
     public static double ingresarSoloNumeroDouble() {
         Scanner in = new Scanner(System.in);
         while (!in.hasNextDouble()) {
@@ -69,7 +68,6 @@ public class Main {
         double numero = in.nextDouble();
         return numero;
     }
-
     public static int ingresarSoloNumeroInt() {
         Scanner in = new Scanner(System.in);
         while (!in.hasNextInt()) {
@@ -92,21 +90,16 @@ public class Main {
         }
         return true;
     }
-    public static boolean validarRangoNumero(int numero, int min, int max) {
-        if (numero < min || numero > max) {
-            return false;
-        }
-        return true;
-    }
     //a*e!=b*d
-   /*public static double[] sistDosxDos(double[] listaCoeficientes){
-        double[] listaSoluciones=new double[2];
-        double A=listaCoeficientes[0];
-        double B=listaCoeficientes[1];
-        double C=listaCoeficientes[2];
-        double D=listaCoeficientes[3];
-        double E=listaCoeficientes[4];
-        double F=listaCoeficientes[5];
+    public static double[] solSist2x2(double[] ecuacion1, double[] ecuacion2) {
+        double[] listaSoluciones = new double[2];
+        double A = ecuacion1[0];
+        double B = ecuacion1[1];
+        double C = ecuacion1[2];
+
+        double D = ecuacion2[0];
+        double E = ecuacion2[1];
+        double F = ecuacion2[2];
 
         double determinanteSistema = A * E - B * D;
         double determinanteX = C * E - B * F;
@@ -115,10 +108,18 @@ public class Main {
         listaSoluciones[0] = determinanteX / determinanteSistema;
         listaSoluciones[1] = determinanteY / determinanteSistema;
         return listaSoluciones;
-        /*System.out.println("La solución del sistema es:");
-        System.out.println("x = " + x);
-        System.out.println("y = " + y);
-    } */
+    }
+
+    public static boolean validarRangoNumero(int numero, int min, int max) {
+        if (numero < min || numero > max) {
+            return false;
+        }
+        return true;
+    }
+
+    public static double calcDiscriminante(double a, double b, double c){
+        return (Math.pow(b,2)-4*a*c);
+    }
     public static String ecuacionRecta(double[] listaCoordenadas){
         String ecuacion = "";
         double X=listaCoordenadas[0];
@@ -133,10 +134,6 @@ public class Main {
             ecuacion = String.valueOf("Y = " + m + "X + " + b);
         }
         return ecuacion;
-    }
-
-    public static double calcDiscriminante(double a, double b, double c){
-        return (Math.pow(b,2)-4*a*c);
     }
 
     public static void opcionesMenuPrincipal(){
@@ -155,13 +152,19 @@ public class Main {
         switch (eleccion){
             case 1:
                 menuAritmeticas();
-                break;
+                menuPrincipal();
+            case 2:
+                menuEcuacionCuadratica();
+                menuPrincipal();
+            case 4:
+                menuSistEcuacionesLineales();
+                menuPrincipal();
             case 5:
                 ejecucuionEcuacionDeLaRecta();
-                break;
-        }
-    }
+                menuPrincipal();
+            }
 
+        }
     public static void ejecucuionEcuacionDeLaRecta(){
         double[] arregloCoordenadas = new double [4];
         System.out.println("El orden de ingrese de las coordenadas es: 1era X, 1era Y, 2da X, 2da Y");
@@ -204,21 +207,21 @@ public class Main {
                 System.out.println("ingrese el 2do valor");
                 double segundoValorSuma=ingresarSoloNumeroDouble();
                 System.out.println("la suma de de sus numeros es: " + sumar(primerValorSuma,segundoValorSuma));
-                break;
+                menuPrincipal();
             case 2:
                 System.out.println("ingrese su numero base");
                 double primerValorResta=ingresarSoloNumeroDouble();
                 System.out.println("ingrese el valor que restará al primero");
                 double segundoValorResta=ingresarSoloNumeroDouble();
                 System.out.println("la resta de sus numeros es: "+restar(primerValorResta,segundoValorResta));
-                break;
+                menuPrincipal();
             case 3:
                 System.out.println("ingrese el primer factor");
                 double primerValorMultiplicacion = ingresarSoloNumeroDouble();
                 System.out.println("ingrese el segundo factor");
                 double segundoValorMultiplicacion = ingresarSoloNumeroDouble();
                 System.out.println("la multiplicacion de ambos números es: " + multiplicar(primerValorMultiplicacion,segundoValorMultiplicacion));
-                break;
+                menuPrincipal();
             case 4:
                 System.out.println("ingrese el dividendo");
                 double primerValorDivision = ingresarSoloNumeroDouble();
@@ -229,21 +232,21 @@ public class Main {
                     segundoValorDivision = ingresarSoloNumeroDouble();
                 }
                 System.out.println("La división de los números es: " + dividir(primerValorDivision,segundoValorDivision));
-                break;
+                menuPrincipal();
             case 5:
                 System.out.println("ingrese el primer número: ");
                 double primerValorMayor = ingresarSoloNumeroDouble();
                 System.out.println("ingrese el segundo número a comparar: ");
                 double segundoValorMayor = ingresarSoloNumeroDouble();
                 System.out.println("El número mayor de entre los dos ingresados es: " + numMayor(primerValorMayor,segundoValorMayor));
-                break;
+                menuPrincipal();
             case 6:
                 System.out.println("ingrese el primer número: ");
                 double primerValorMenor = ingresarSoloNumeroDouble();
                 System.out.println("ingrese el segundo número a comparar: ");
                 double segundoValorMenor = ingresarSoloNumeroDouble();
                 System.out.println("El número menor de entre los dos ingresados es: " + numMenor(primerValorMenor,segundoValorMenor));
-                break;
+                menuPrincipal();
             case 7:
                 System.out.println("ingrese el número base: ");
                 double base = ingresarSoloNumeroDouble();
@@ -254,7 +257,7 @@ public class Main {
                     exponente = ingresarSoloNumeroDouble();
                 }
                 System.out.println("La potencia da como resultado: " + potencia(base,exponente));
-                break;
+                menuPrincipal();
             case 8:
                 System.out.println("Ingrese el número del que se obtendrá el porcentaje: ");
                 double numeroPorcentaje = ingresarSoloNumeroDouble();
@@ -269,10 +272,102 @@ public class Main {
                     porcentaje = ingresarSoloNumeroDouble();
                 }
                 System.out.println("El porcentaje obtenido es: " + porcentaje(numeroPorcentaje,porcentaje));
-                break;
+                menuPrincipal();
             case 9:
-                System.out.println("Saliendo...");
-                break;
+                System.out.println("Volviendo al menu principal");
+                menuPrincipal();
         }
+    }
+    public static void menuEcuacionCuadratica(){
+        System.out.println("Dado el siguente esquema de escritura de la ecuación cuadratica, a(x^2)+b(x)+c=0");
+
+        System.out.println("Ingrese el valor de a");
+        double a = ingresarSoloNumeroDouble();
+        while (!validarDistinto0(a)){
+            System.out.println("El valor de a debe ser distinto de 0, ingréselo nuevamente");
+            a = ingresarSoloNumeroDouble();
+        }
+
+        System.out.println("Ahora ingrese el valor de b");
+        double b = ingresarSoloNumeroDouble();
+
+        System.out.println("Finalmente ingrese el valor de c");
+        double c = ingresarSoloNumeroDouble();
+
+        if (calcDiscriminante(a,b,c) < 0){
+            System.out.println("la ecuacion descrita tiene al menos una solucion imaginaria, por lo que se volvera al menu principal");
+        }
+
+        double[] soluciones = solEcuacion2Grado(a,b,c);
+        mostrarSolucionesCuadratica(soluciones);
+    }
+    public static void mostrarSolucionesCuadratica(double[] soluciones){
+        int cantSoluciones = soluciones.length;
+
+        if (cantSoluciones == 1){
+            System.out.println("La ecuación cuadratica tiene una unica solucion y es: " + soluciones[0]);
+        }else{
+            System.out.println("La solucion x1 de la ecuacion es: " + soluciones[0]);
+            System.out.println("La solucion x2 de la ecuacion es: " + soluciones[1]+"\n");
+        }
+    }
+
+    public static void mostrarSolucionesLineales(double[] soluciones){
+        System.out.println("El valor de x para el sistema es: "+soluciones[0]);
+        System.out.println("El valor de y para el sistema es: "+soluciones[1]+"\n");
+    }
+
+    public static boolean validarLinealesDistintas(double[] ecuacion1, double[] ecuacion2){
+        double coeficiente1 = ecuacion1[0]/ecuacion2[0];
+        double coeficiente2 = ecuacion1[1]/ecuacion2[1];
+        double coeficiente3 = ecuacion1[2]/ecuacion2[2];
+        if (coeficiente1==coeficiente2 && coeficiente2==coeficiente3){
+            return false;
+        }
+        return true;
+    }
+
+    public static void menuSistEcuacionesLineales(){
+
+        double[][] ecuaciones = ingresarEcuacionesLineales();
+        double[] ecuacion1 = ecuaciones[0];
+        double[] ecuacion2 = ecuaciones[1];
+
+        if (!validarLinealesDistintas(ecuacion1,ecuacion2)){
+            System.out.println("Las ecuaciones descritas son igules, por lo que se volvera al menu principal");
+            menuPrincipal();
+        }
+
+        double[] soluciones = solSist2x2(ecuacion1,ecuacion2);
+        mostrarSolucionesLineales(soluciones);
+    }
+    public static double[][] ingresarEcuacionesLineales(){
+        System.out.println("Dado el siguiente esquema de sistemas de ecuaciones lineales, ax + by = c");
+
+        System.out.println("Ingrese el valor de a para la primera ecuación");
+        double a1 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de b para la primera ecuación");
+        double b1 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de c para la primera ecuación");
+        double c1 = ingresarSoloNumeroDouble();
+
+        double[] ecuacion1 = {a1,b1,c1};
+
+        System.out.println("Ingrese el valor de a para la segunda ecuación");
+        double a2 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de b para la segunda ecuación");
+        double b2 = ingresarSoloNumeroDouble();
+
+        System.out.println("Ingrese el valor de c para la segunda ecuación");
+        double c2 = ingresarSoloNumeroDouble();
+
+        double[] ecuacion2 = {a2,b2,c2};
+
+        double[][] ecuaciones = {ecuacion1,ecuacion2};
+
+        return ecuaciones;
     }
 }
