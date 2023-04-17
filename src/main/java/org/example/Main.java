@@ -165,9 +165,9 @@ public class Main {
             case 6:
                 System.out.println("Saliendo del programa");
                 break;
-            }
-
         }
+
+    }
     public static void ejecucuionEcuacionDeLaRecta(){
         double[] arregloCoordenadas = new double [4];
         System.out.println("El orden de ingrese de las coordenadas es: 1era X, 1era Y, 2da X, 2da Y");
@@ -299,6 +299,7 @@ public class Main {
 
         if (calcDiscriminante(a,b,c) < 0){
             System.out.println("la ecuacion descrita tiene al menos una solucion imaginaria, por lo que se volvera al menu principal");
+            menuPrincipal();
         }
 
         double[] soluciones = solEcuacion2Grado(a,b,c);
