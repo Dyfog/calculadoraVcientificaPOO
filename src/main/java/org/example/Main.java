@@ -24,9 +24,9 @@ public class Main {
     }
     public static double numMenor(double a, double b){
         if (a<b){
-            return 1;
+            return a;
         } else {
-            return 2;
+            return b;
         }
     }
     public static double sumar(double a, double b){
@@ -39,9 +39,13 @@ public class Main {
         return dividendo / divisor;
     }
     public static double multiplicar(double a, double b) {
-        return a * b;
+        double producto = a*b;
+        if (a*b==-0){
+            return 0;
+        }
+        return producto;
     }
-    public static double[] ecuacion2Grado(int a, int b, int c) {
+    /*public static double[] ecuacion2Grado(int a, int b, int c) {
         double discriminante = calcDiscriminante(a,b,c);
         double[] soluciones = new double[0];
         if (discriminante >= 0) {
@@ -55,7 +59,7 @@ public class Main {
             }
         }
         return soluciones;
-    }
+    } */
     public static double ingresarSoloNumeroDouble() {
         Scanner in = new Scanner(System.in);
         while (!in.hasNextDouble()) {
@@ -95,7 +99,7 @@ public class Main {
         return true;
     }
     //a*e!=b*d
-    public static double[] sistDosxDos(double[] listaCoeficientes){
+   /*public static double[] sistDosxDos(double[] listaCoeficientes){
         double[] listaSoluciones=new double[2];
         double A=listaCoeficientes[0];
         double B=listaCoeficientes[1];
@@ -113,8 +117,8 @@ public class Main {
         return listaSoluciones;
         /*System.out.println("La solución del sistema es:");
         System.out.println("x = " + x);
-        System.out.println("y = " + y);*/
-    }
+        System.out.println("y = " + y);
+    } */
     public static String ecuacionRecta(double[] listaCoordenadas){
         String ecuacion = "";
         double X=listaCoordenadas[0];
