@@ -42,6 +42,16 @@ class MainTest {
     int valorMinRango1;
     int valorMinRango2;
     int valorMinRango3;
+    double valorDiscriminante1;
+    double valorDiscriminante2;
+    double valorDiscriminante3;
+    double valorDiscriminante4;
+    double valorDiscriminante5;
+    double valorDiscriminante6;
+    double[] lista1Sist2x2= new double[3];
+    double[] lista2Sist2x2= new double[3];
+    double[] lista3Sist2x2= new double[3];
+    double[] lista4Sist2x2= new double[3];
     double[] datosTest = new double[2];
     double[] datosTest2 = new double[2];
     double[] datosTest3 = new double[2];
@@ -97,6 +107,20 @@ class MainTest {
         valorMinRango1=-3;
         valorMinRango2=-1;
         valorMinRango3=1;
+
+        valorDiscriminante1=2;
+        valorDiscriminante2=-2;
+        valorDiscriminante3=-2;
+        valorDiscriminante4=-2;
+        valorDiscriminante5=0;
+        valorDiscriminante6=0;
+
+        lista1Sist2x2= new double[]{-1, -2, -3};
+        lista2Sist2x2= new double[]{1, 2, 3};
+
+        lista3Sist2x2= new double[]{1, 2, 3};
+        lista4Sist2x2= new double[]{4, 5, 6};
+
         datosTest[0] = 2;
         datosTest[1] = 4;
 
@@ -270,5 +294,26 @@ class MainTest {
     @Test
     void ecuacionRecta() {
         assertEquals("Y = -8.0X + 11.0",Main.ecuacionRecta(listaTestEcRecta));
+    }
+    @Test
+    void solEcuacion2Grado() {
+        assertEquals(-2,Main.solEcuacion2Grado(1,4,4)[0]);
+    }
+
+    @Test
+        //Debido a que el método que llama a calcDiscriminante ya valida que "a" no puede ser =0, no se probará con ese caso crítico
+    void calcDiscriminante() {
+        assertEquals(20,Main.calcDiscriminante(valorDiscriminante1,valorDiscriminante2,valorDiscriminante3));
+        assertEquals(0,Main.calcDiscriminante(valorDiscriminante4,valorDiscriminante5,valorDiscriminante6));
+    }
+    /*@Test
+    Con esta prueba descubrimos una excepción que no sabemos manejar
+    void validarLinealesDistintas() {
+        assertTrue(Main.validarLinealesDistintas(lista1Sist2x2,lista2Sist2x2));
+    }*/
+    @Test
+    void solSist2x2() {
+        assertEquals(-1,Main.solSist2x2(lista3Sist2x2,lista4Sist2x2)[0]);
+        assertEquals(2,Main.solSist2x2(lista3Sist2x2,lista4Sist2x2)[1]);
     }
 }

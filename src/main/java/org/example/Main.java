@@ -90,7 +90,6 @@ public class Main {
         }
         return true;
     }
-    //a*e!=b*d
     public static double[] solSist2x2(double[] ecuacion1, double[] ecuacion2) {
         double[] listaSoluciones = new double[2];
         double A = ecuacion1[0];
@@ -101,7 +100,7 @@ public class Main {
         double E = ecuacion2[1];
         double F = ecuacion2[2];
 
-        double determinanteSistema = A * E - B * D;
+        double determinanteSistema = calcDetSist2x2(ecuacion1,ecuacion2);
         double determinanteX = C * E - B * F;
         double determinanteY = A * F - C * D;
 
@@ -167,7 +166,7 @@ public class Main {
                 menuPrincipal();
             case 6:
                 System.out.println("Saliendo del programa");
-                break;
+                System.exit(0);
         }
 
     }
@@ -333,6 +332,13 @@ public class Main {
         }
         return true;
     }
+    public static double calcDetSist2x2(double[] ecuacion1, double[] ecuacion2){
+        double A = ecuacion1[0];
+        double B = ecuacion1[1];
+        double D = ecuacion2[0];
+        double E = ecuacion2[1];
+        return A * E - B * D;
+    }
 
     public static void menuSistEcuacionesLineales(){
 
@@ -340,8 +346,8 @@ public class Main {
         double[] ecuacion1 = ecuaciones[0];
         double[] ecuacion2 = ecuaciones[1];
 
-        if (!validarLinealesDistintas(ecuacion1,ecuacion2)){
-            System.out.println("Las ecuaciones descritas son igules, por lo que se volvera al menu principal");
+        if (!validarLinealesDistintas(ecuacion1,ecuacion2)||calcDetSist2x2(ecuacion1,ecuacion2)==0){
+            System.out.println("Las ecuaciones descritas no tienen una solución única, por lo que se volvera al menu principal");
             menuPrincipal();
         }
 
