@@ -162,9 +162,12 @@ public class Main {
             case 5:
                 ejecucuionEcuacionDeLaRecta();
                 menuPrincipal();
-            }
-
+            case 6:
+                System.out.println("Saliendo del programa");
+                break;
         }
+
+    }
     public static void ejecucuionEcuacionDeLaRecta(){
         double[] arregloCoordenadas = new double [4];
         System.out.println("El orden de ingrese de las coordenadas es: 1era X, 1era Y, 2da X, 2da Y");
