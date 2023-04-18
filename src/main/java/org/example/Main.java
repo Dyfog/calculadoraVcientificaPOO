@@ -299,6 +299,7 @@ public class Main {
 
         if (calcDiscriminante(a,b,c) < 0){
             System.out.println("la ecuacion descrita tiene al menos una solucion imaginaria, por lo que se volvera al menu principal");
+            menuPrincipal();
         }
 
         double[] soluciones = solEcuacion2Grado(a,b,c);
