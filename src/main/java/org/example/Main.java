@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        menuPrincipal();
+        double[] lados = {1,1};
+        double resultado = volumenCono(lados);
+        System.out.println(resultado);
     }
 
     public static double[] capturaDatos2D() {
@@ -63,14 +65,14 @@ public class Main {
         return Math.pow(lados[0], 3);
     }
     public static double volumenCono(double[] lados) {
-        return (1 / 3) * lados[1] * Math.PI * Math.pow(lados[0], 3);
+        return (lados[1] * Math.PI * Math.pow(lados[0], 2))/3;
     }
     public static boolean comprobarCero(double[] lados) {
         boolean comprobar = true;
         for (int i = 0; i < lados.length; i++) {
             if (lados[i] == 0) {
-                comprobar = false;
-                break;
+                System.out.println("Los lados no pueden ser cero.");
+                return false;
             }
         }
         return comprobar;
