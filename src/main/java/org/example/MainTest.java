@@ -1,9 +1,12 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-
     double valorPorcentaje1;
     double valorPorcentaje2;
     double valorpotencia1;
@@ -39,12 +42,12 @@ class MainTest {
     int valorMinRango1;
     int valorMinRango2;
     int valorMinRango3;
-    /*double valorDiscriminante1;
-    double valorDiscriminante2;
-    double valorDiscriminante3;*/
+    double[] datosTest = new double[2];
+    double[] datosTest2 = new double[2];
+    double[] datosTest3 = new double[2];
+    double[] datosTest4 = new double[2];
 
-
-    @org.junit.jupiter.api.BeforeEach
+    @BeforeEach
     void setUp() {
         valorPorcentaje1=-2;
         valorPorcentaje2=0.5;
@@ -94,76 +97,178 @@ class MainTest {
         valorMinRango1=-3;
         valorMinRango2=-1;
         valorMinRango3=1;
+        datosTest[0] = 2;
+        datosTest[1] = 4;
+
+        datosTest2[0] = 1;
+        datosTest2[1] = 1;
+
+        datosTest3[0] = 0;
+        datosTest3[1] = 0;
+
+        datosTest4[0] = -1;
+        datosTest4[1] = -25;
     }
 
-    @org.junit.jupiter.api.Test
+    @AfterEach
+    void tearDown() {
+    }
+    @Test
+    void perimetroCuadrado() {
+        assertEquals(8,Main.perimetroCuadrado(datosTest));
+    }
+
+    @Test
+    void perimetroRectangulo() {
+        assertEquals(12,Main.perimetroRectangulo(datosTest));
+    }
+
+    @Test
+    void perimetroCirculo() {
+        assertEquals(6.28,Main.perimetroCirculo(datosTest),0.2);
+    }
+
+    @Test
+    void perimetroEsfera() {
+        assertEquals(12.56,Main.perimetroEsfera(datosTest),0.2);
+    }
+
+    @Test
+    void perimetroCubo() {
+        assertEquals(24,Main.perimetroCubo(datosTest));
+    }
+
+    @Test
+    void perimetroCono() {
+        assertEquals(17.03,Main.perimetroCono(datosTest), 0.2);
+        assertEquals(7.69,Main.perimetroCono(datosTest2), 0.2);
+    }
+
+    @Test
+    void areaCuadrado() {
+        assertEquals(4,Main.areaCuadrado(datosTest));
+    }
+
+    @Test
+    void areaRectangulo() {
+        assertEquals(8,Main.areaRectangulo(datosTest));
+    }
+
+    @Test
+    void areaCirculo() {
+        assertEquals(12.56,Main.areaCirculo(datosTest), 0.2);
+    }
+
+    @Test
+    void areaEsfera() {
+        assertEquals(50.26,Main.areaEsfera(datosTest),0.2);
+    }
+
+    @Test
+    void areaCubo() {
+        assertEquals(24,Main.areaCubo(datosTest));
+    }
+
+    @Test
+    void areaCono() {
+        assertEquals(40.67,Main.areaCono(datosTest), 0.2);
+        assertEquals(7.58,Main.areaCono(datosTest2), 0.2);
+    }
+
+    @Test
+    void volumenEsfera() {
+        assertEquals(33.51,Main.volumenEsfera(datosTest),0.2);
+    }
+
+    @Test
+    void volumenCubo() {
+        assertEquals(8,Main.volumenCubo(datosTest));
+    }
+
+    @Test
+    void volumenCono() {
+        assertEquals(16.75,Main.volumenCono(datosTest), 0.2);
+    }
+
+    @Test
+    void comprobarCero() {
+        assertTrue(Main.comprobarCero(datosTest));
+        assertFalse(Main.comprobarCero(datosTest3));
+    }
+    @Test
+    void comprobarMenorCero() {
+        assertTrue(Main.comprobarMenorCero(datosTest));
+        assertFalse(Main.comprobarMenorCero(datosTest4));
+    }
+    @Test
+    void comprobarTriangulo() {
+        assertTrue(Main.comprobarTriangulo(datosTest));
+        assertFalse(Main.comprobarTriangulo(datosTest3));
+    }
+    @Test
     void porcentaje() {
         assertEquals(-0.01,Main.porcentaje(valorPorcentaje1,valorPorcentaje2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void potencia() {
         assertEquals(-729,Main.potencia(valorpotencia1,valorpotencia2));
         assertEquals(729,Main.potencia(valorpotencia3,valorpotencia4));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void numMayor() {
         assertEquals(0,Main.numMayor(valorMayor1,valorMayor2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void numMenor() {
         assertEquals(-3,Main.numMenor(valorMenor1,valorMenor2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void sumar() {
         assertEquals(-1,Main.sumar(valorSuma1,valorSuma2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void restar() {
         assertEquals(3,Main.restar(valorResta1,valorResta2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void dividir() {
         assertEquals(-2,Main.dividir(valorDivision1,valorDivision2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void multiplicar() {
         assertEquals(0,Main.multiplicar(valorMultiplicacion1,valorMultiplicacion2));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validarMayorA0() {
         assertTrue(Main.validarMayorA0(valorMayorA0));
         assertFalse(Main.validarMayorA0(valorIgualA0));
         assertFalse(Main.validarMayorA0(valorMenorA0));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validarDistinto0() {
         assertTrue(Main.validarDistinto0(valorMayorA0));
         assertFalse(Main.validarDistinto0(valorIgualA0));
         assertTrue(Main.validarDistinto0(valorMenorA0));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void validarRangoNumero() {
         assertTrue(Main.validarRangoNumero(valorRango1,valorMinRango1,valorMaxRango1));
         assertFalse(Main.validarRangoNumero(valorRango2,valorMinRango2,valorMaxRango2));
         assertTrue(Main.validarRangoNumero(valorRango3,valorMinRango3,valorMaxRango3));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void ecuacionRecta() {
         assertEquals("Y = -8.0X + 11.0",Main.ecuacionRecta(listaTestEcRecta));
     }
-
-    /*@org.junit.jupiter.api.Test
-    void calcDiscriminante() {
-    }*/
 }
